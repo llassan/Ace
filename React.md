@@ -31,6 +31,52 @@ There are four different phases in the lifecycle of a React component:
 
 ## What are the lifecycle methods of React?
 
+React lifecycle methods are special functions that allow you to hook into different stages of a component’s life (mounting, updating, and unmounting). Here’s an interview-ready answer:
+
+React Lifecycle Methods
+
+React lifecycle methods are categorized based on the component’s lifecycle stages:
+
+1. Mounting (When the component is created and added to the DOM):
+	•	constructor():
+Used for initializing state and binding event handlers.
+	•	static getDerivedStateFromProps(props, state):
+Updates state based on props before rendering (rarely used).
+	•	render():
+Required method that returns the JSX to render the component.
+	•	componentDidMount():
+Executes after the component is rendered in the DOM. Ideal for API calls, subscriptions, or setting up listeners.
+
+2. Updating (When the component’s props or state changes):
+	•	static getDerivedStateFromProps(props, state):
+Also called during updates to sync state with new props.
+	•	shouldComponentUpdate(nextProps, nextState):
+Determines whether the component should re-render (used for optimization).
+	•	render():
+Re-renders the UI based on updated props or state.
+	•	getSnapshotBeforeUpdate(prevProps, prevState):
+Captures some information (e.g., scroll position) before the DOM updates.
+	•	componentDidUpdate(prevProps, prevState, snapshot):
+Called after the DOM is updated. Useful for DOM manipulations or making API calls after state updates.
+
+3. Unmounting (When the component is removed from the DOM):
+	•	componentWillUnmount():
+Used for cleanup tasks like removing event listeners, canceling subscriptions, or clearing timers.
+
+4. Error Handling (When an error occurs in the component):
+	•	static getDerivedStateFromError(error):
+Updates state to display a fallback UI during an error.
+	•	componentDidCatch(error, info):
+Logs errors and additional info, useful for error reporting.
+
+Key Points for Functional Components:
+
+With React Hooks, functional components can now handle lifecycle methods using:
+	•	useEffect(): Handles componentDidMount, componentDidUpdate, and componentWillUnmount in a unified way.
+	•	useState() and useContext(): Replace constructor and state management.
+
+This structured breakdown is concise and perfect for an interview context.
+//
 The various lifecycle methods in React are:
 
 - **constructor()**: 
