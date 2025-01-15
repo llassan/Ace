@@ -1,5 +1,10 @@
 # React Lifecycle, Hooks, and Key Concepts
 
+## Why do we need a Framework
+
+Frameworks provide a structured and efficient way to build modern web applications. 
+By using frameworks, developers can focus more on solving business problems rather than reinventing the wheel for common functionalities.
+
 ## What are the different phases of the component lifecycle?
 
 There are four different phases in the lifecycle of a React component:
