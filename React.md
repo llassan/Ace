@@ -141,3 +141,128 @@ Error boundaries are React components that catch JavaScript errors anywhere in t
 5. **Which method would you use to handle events in React?**
    - In React, events are handled using camelCase naming conventions. Functions are passed as event handlers in JSX instead of strings.
 
+## Strict Mode in React
+
+Strict Mode in React is a development tool that helps identify potential problems in your application. It currently addresses the following issues:
+
+- **Identifying components with unsafe lifecycle methods**:  
+  StrictMode helps detect the usage of deprecated lifecycle methods that are unsafe in asynchronous React applications. It provides warnings if any class components use unsafe lifecycle methods.
+  
+- **Warning about the usage of legacy string refs**:  
+  If you are using string refs (an older method for managing refs in React), StrictMode will give you a warning to encourage the use of the recommended callback refs.
+  
+- **Warning about the usage of `findDOMNode()`**:  
+  The `findDOMNode()` method has been deprecated in React. StrictMode provides warnings when this method is used, encouraging developers to avoid it.
+  
+- **Warning about the usage of legacy context API**:  
+  React's legacy context API is error-prone, and StrictMode warns when it is used, urging developers to migrate to the new context API.
+
+## Different Ways to Style a React Component
+
+React offers several ways to style components, allowing flexibility and scalability in design. Here are a few approaches:
+
+1. **Inline Styling**:  
+   You can apply styles directly using the `style` attribute in JSX. The value of `style` must be a JavaScript object with camelCased properties.
+   ```jsx
+   const divStyle = { color: 'blue', backgroundColor: 'yellow' };
+   return <div style={divStyle}>Hello, World!</div>;
+   ```
+
+
+
+
+2. **Using JavaScript Object**:
+You can create a JavaScript object with your style properties and use it as the value for the style attribute.
+
+```jsx
+const buttonStyle = { fontSize: '20px', padding: '10px' };
+return <button style={buttonStyle}>Click Me</button>;
+```
+3. **CSS Stylesheet**:
+You can create a separate CSS file, write styles for your component, and import the CSS file into your component file.
+
+```jsx
+/* styles.css */
+.my-button {
+  background-color: blue;
+  color: white;
+}
+```jsx
+import './styles.css';
+return <button className="my-button">Click Me</button>;
+```
+4. **CSS Modules**:
+With CSS Modules, you can create scoped styles that only apply to the component that imports them. You define the styles in a .module.css file and import them in the component.
+
+```jsx
+/* styles.module.css */
+.button {
+  background-color: red;
+  padding: 10px;
+}
+```
+```jsx
+
+import styles from './styles.module.css';
+return <button className={styles.button}>Click Me</button>;
+```
+
+## Techniques to Optimize React App Performance:
+
+Here are several techniques to optimize the performance of a React app:
+
+Minimize API Calls & Use CDN for Images:
+Reduce unnecessary network requests and use Content Delivery Networks (CDNs) for faster image loading.
+
+Using useMemo():
+useMemo() is a React hook that caches the result of expensive functions and re-calculates them only when necessary, helping avoid redundant computations during re-renders.
+
+```jsx
+
+const memoizedValue = useMemo(() => expensiveFunction(data), [data]);
+```
+
+Using React.PureComponent:
+React.PureComponent is a base class for components that implements shouldComponentUpdate() with a shallow prop and state comparison. It can help reduce unnecessary re-renders in class components.
+
+```jsx
+class MyComponent extends React.PureComponent { ... }
+```
+
+Maintaining State Colocation:
+Colocate state by keeping it as close as possible to the component that needs it. This minimizes unnecessary re-renders in parent components.
+
+```jsx
+// Instead of keeping state in the parent, move it to the relevant child component
+const ChildComponent = () => {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+};
+```
+
+Lazy Loading:
+Lazy loading reduces the initial load time of your React app by loading components only when needed, rather than all at once.
+
+```jsx
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
+```
+
+## What are Higher Order Components (HOCs)?
+A Higher-Order Component (HOC) is a function that takes a component and returns a new component with enhanced functionality. HOCs allow you to reuse logic across components without repeating code.
+
+## When do we need a Higher-Order Component?
+
+HOCs are useful when you need to reuse component logic across multiple components, especially if the components are similar but differ in specific ways.
+Instead of duplicating logic in each component, an HOC abstracts the shared functionality into a single place, making the code more DRY (Don't Repeat Yourself).
+Example of a Higher-Order Component:
+```jsx
+function withLogging(WrappedComponent) {
+  return function(props) {
+    console.log('Component rendered');
+    return <WrappedComponent {...props} />;
+  };
+}
+const MyComponent = () => <div>My Component</div>;
+const MyComponentWithLogging = withLogging(MyComponent);
+```
+In this example, withLogging is a higher-order component that logs a message each time MyComponent renders. The HOC enhances the original component's behavior.
