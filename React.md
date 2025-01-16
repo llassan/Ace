@@ -20,7 +20,7 @@ React lifecycle methods are special functions that allow you to hook into differ
 
 React Lifecycle Methods are categorized based on the component’s lifecycle stages:
 
-1. **Mounting (When the component is created and added to the DOM)**:
+1. **Mounting**: Mounting refers to adding the elements into the browser DOM. This phase includes lifecycle methods like:
 	- constructor(): Used for initializing state and binding event handlers.
 	- static getDerivedStateFromProps(props, state): Updates state based on props before rendering (rarely used).
 	- render(): Required method that returns the JSX to render the component.
