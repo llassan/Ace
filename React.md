@@ -13,6 +13,22 @@ Its declarative syntax simplifies UI development, while its large ecosystem and 
 React is versatile, working seamlessly with libraries for state management (e.g., Redux) and routing, and it supports cross-platform development through tools like React Native. 
 Backed by Facebook and widely used by major companies, React is a reliable choice for scalable, dynamic applications.
 
+## What is JSX?
+JSX is a XML-like syntax extension to ECMAScript (the acronym stands for JavaScript XML). Basically it just provides syntactic sugar for the React.createElement() function, giving us expressiveness of JavaScript along with HTML like template syntax.
+
+In the example below text inside <h1> tag is returned as JavaScript function to the render function.
+```jsx harmony
+class App extends React.Component {
+  render() {
+    return(
+      <div>
+        <h1>{'Welcome to React world!'}</h1>
+      </div>
+    )
+  }
+}
+```
+
 ## What are the lifecycle methods of React?
 
 React lifecycle methods are special functions that allow you to hook into different stages of a component’s life (mounting, updating, and unmounting). 
