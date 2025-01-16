@@ -30,6 +30,24 @@ A Promise is a more modern approach to handling asynchronous operations. It repr
 - Fulfilled (Resolved): The operation completed successfully, and the result is available.
 - Rejected: The operation failed, and an error occurred.
 
+```bash
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let data = { name: "John", age: 30 };
+      resolve(data); // Simulating a successful data fetch
+    }, 2000);
+  });
+}
+
+fetchData()
+  .then((data) => {
+    console.log("Data received:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
 Async/await is a newer syntactic sugar introduced in ECMAScript 2017 that simplifies the process of writing asynchronous code in JavaScript. 
 It is built on top of promises and provides a more concise and readable syntax for handling asynchronous operations. Async/await lets engineers write asynchronous code that looks and behaves like synchronous code, making it easier to understand and maintain.
 
