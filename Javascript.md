@@ -6,7 +6,7 @@
 JavaScript is a programming language capable of handling asynchronous operations efficiently. There are various methods through which JavaScript handles asynchronous operations such as callbacks, promises, and async/await.
 
 
-### Callback?
+### Callback:
 A callback is a function passed as an argument to another function and is intended to be executed later, usually after the completion of an asynchronous operation or a specific event.
 ```bash
 
@@ -22,7 +22,13 @@ function onComplete() {
 fetchData(onComplete)
 ```
 
-Promises are another method for handling asynchronous operations in JavaScript. Promises are used to handle asynchronous operations that may take some time to complete, such as fetching data from an API or reading data from a file.
+### Promises: 
+
+A Promise is a more modern approach to handling asynchronous operations. It represents a value that may be available now, or in the future, or may never be available. Promises have three states:
+
+- Pending: The operation is still ongoing.
+- Fulfilled (Resolved): The operation completed successfully, and the result is available.
+- Rejected: The operation failed, and an error occurred.
 
 Async/await is a newer syntactic sugar introduced in ECMAScript 2017 that simplifies the process of writing asynchronous code in JavaScript. 
 It is built on top of promises and provides a more concise and readable syntax for handling asynchronous operations. Async/await lets engineers write asynchronous code that looks and behaves like synchronous code, making it easier to understand and maintain.
