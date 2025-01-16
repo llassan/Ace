@@ -1,6 +1,6 @@
 # React Lifecycle, Hooks, and Key Concepts
 
-## Why do we need a Framework
+## Why do we need a Framework?
 
 Frameworks provide a structured and efficient way to build modern web applications. 
 By using frameworks, developers can focus more on solving business problems rather than reinventing the wheel for common functionalities.
@@ -12,22 +12,6 @@ It uses a component-based architecture, enabling reusable and maintainable code,
 Its declarative syntax simplifies UI development, while its large ecosystem and community provide extensive tools and resources. 
 React is versatile, working seamlessly with libraries for state management (e.g., Redux) and routing, and it supports cross-platform development through tools like React Native. 
 Backed by Facebook and widely used by major companies, React is a reliable choice for scalable, dynamic applications.
-
-## What are the different phases of the component lifecycle?
-
-There are four different phases in the lifecycle of a React component:
-
-1. **Initialization**: 
-   - During this phase, React component will prepare by setting up the default props and initial state for the upcoming journey.
-
-2. **Mounting**: 
-   - Mounting refers to adding the elements into the browser DOM. React uses the Virtual DOM, meaning the entire browser DOM is not refreshed. This phase includes lifecycle methods like `componentWillMount` and `componentDidMount`.
-
-3. **Updating**: 
-   - A component will be updated when there is a change in its state or props. Lifecycle methods involved in this phase include `componentWillUpdate`, `shouldComponentUpdate`, `render`, and `componentDidUpdate`.
-
-4. **Unmounting**: 
-   - In the last phase, the component will be removed from the DOM. The lifecycle method `componentWillUnmount` is invoked during this phase.
 
 ## What are the lifecycle methods of React?
 
@@ -67,6 +51,21 @@ With React Hooks, functional components can now handle lifecycle methods using:
 
 This structured breakdown is concise and perfect for an interview context.
 
+## What are the different phases of the component lifecycle?
+
+There are four different phases in the lifecycle of a React component:
+
+1. **Initialization**: 
+   - During this phase, React component will prepare by setting up the default props and initial state for the upcoming journey.
+
+2. **Mounting**: 
+   - Mounting refers to adding the elements into the browser DOM. React uses the Virtual DOM, meaning the entire browser DOM is not refreshed. This phase includes lifecycle methods like `componentWillMount` and `componentDidMount`.
+
+3. **Updating**: 
+   - A component will be updated when there is a change in its state or props. Lifecycle methods involved in this phase include `componentWillUpdate`, `shouldComponentUpdate`, `render`, and `componentDidUpdate`.
+
+4. **Unmounting**: 
+   - In the last phase, the component will be removed from the DOM. The lifecycle method `componentWillUnmount` is invoked during this phase.
 
 ## Types of Hooks in React
 
