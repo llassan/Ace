@@ -1,6 +1,12 @@
 # Javascript
 
-## What is Callback?
+
+## 1. Can you explain how JavaScript handles asynchronous operations?
+
+JavaScript is a programming language capable of handling asynchronous operations efficiently. There are various methods through which JavaScript handles asynchronous operations such as callbacks, promises, and async/await.
+
+
+### Callback?
 A callback is a function passed as an argument to another function and is intended to be executed later, usually after the completion of an asynchronous operation or a specific event.
 ```bash
 
@@ -15,12 +21,6 @@ function onComplete() {
 }
 fetchData(onComplete)
 ```
-## 1. Can you explain how JavaScript handles asynchronous operations?
-
-JavaScript is a programming language capable of handling asynchronous operations efficiently. There are various methods through which JavaScript handles asynchronous operations such as callbacks, promises, and async/await.
-
-Callbacks are an essential part of asynchronous programming in JavaScript. They are passed as arguments to other functions and are invoked after the completion of some operation. 
-Callbacks are used to ensure that a function is not executed until a necessary operation is complete.
 
 Promises are another method for handling asynchronous operations in JavaScript. Promises are used to handle asynchronous operations that may take some time to complete, such as fetching data from an API or reading data from a file.
 
