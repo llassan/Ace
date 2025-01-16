@@ -1,4 +1,19 @@
-# Javascript
+#Javascript
+
+'''bash
+function fetchData(callback) {
+    setTimeout(() => {
+        console.log("Data fetched");
+        callback();
+    }, 1000);
+}
+
+function onComplete() {
+    console.log("Callback executed!");
+}
+
+fetchData(onComplete)
+'''
 
 ## 1. Can you explain how JavaScript handles asynchronous operations?
 
