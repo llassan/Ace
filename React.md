@@ -1,11 +1,11 @@
-# React Lifecycle, Hooks, and Key Concepts
+# React Interview Questions & Answers
 
-## Why do we need a Framework?
+### Why do we need a Framework?
 
 Frameworks provide a structured and efficient way to build modern web applications. 
 By using frameworks, developers can focus more on solving business problems rather than reinventing the wheel for common functionalities.
 
-## Why React.js?
+### Why React.js?
 
 React.js is a flexible and efficient JavaScript library for building user interfaces. 
 It uses a component-based architecture, enabling reusable and maintainable code, and a Virtual DOM for optimized rendering and better performance. 
@@ -13,10 +13,10 @@ Its declarative syntax simplifies UI development, while its large ecosystem and 
 React is versatile, working seamlessly with libraries for state management (e.g., Redux) and routing, and it supports cross-platform development through tools like React Native. 
 Backed by Facebook and widely used by major companies, React is a reliable choice for scalable, dynamic applications.
 
-## What is JSX?
+### What is JSX?
 JSX is a XML-like syntax extension to ECMAScript (the acronym stands for JavaScript XML). Basically it just provides syntactic sugar for the React.createElement() function, giving us expressiveness of JavaScript along with HTML like template syntax.
 
-In the example below text inside <h1> tag is returned as JavaScript function to the render function.
+In the example below text inside `<h1>` tag is returned as JavaScript function to the render function.
 ```jsx harmony
 class App extends React.Component {
   render() {
