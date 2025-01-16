@@ -1,7 +1,7 @@
 # Javascript
 
 ## What is Callback?
-A callback is a function passed as an argument to another function as an argument to another function and is intended to be executed later, usually after the completion of an asynchronous operation or a specific event.
+A callback is a function passed as an argument to another function and is intended to be executed later, usually after the completion of an asynchronous operation or a specific event.
 ```bash
 
 function fetchData(callback) {
