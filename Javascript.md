@@ -26,6 +26,8 @@ fetchData(onComplete)
 
 Promise represents the eventual completion (or failure) of an asynchronous operation and its resulting value. 
 
+Promises have three states:
+
 - Pending: The operation is still ongoing.
 - Fulfilled (Resolved): The operation completed successfully, and the result is available.
 - Rejected: The operation failed, and an error occurred.
