@@ -24,7 +24,7 @@ fetchData(onComplete)
 
 ### Promises: 
 
-Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value. 
+Promise represents the eventual completion (or failure) of an asynchronous operation and its resulting value. 
 
 - Pending: The operation is still ongoing.
 - Fulfilled (Resolved): The operation completed successfully, and the result is available.
