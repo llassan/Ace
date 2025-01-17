@@ -24,7 +24,7 @@ fetchData(onComplete)
 
 ### Promises: 
 
-A Promise is a more modern approach to handling asynchronous operations. It represents a value that may be available now, or in the future, or may never be available. Promises have three states:
+Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value. 
 
 - Pending: The operation is still ongoing.
 - Fulfilled (Resolved): The operation completed successfully, and the result is available.
