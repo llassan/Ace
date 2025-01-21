@@ -1,9 +1,9 @@
-# Overview of Docker
-	## What is Docker?
+1. Overview of Docker
+	What is Docker?
 		•	Docker is an open-source platform that allows developers to automate the deployment, scaling, and management of applications using containers.
 		•	A container packages an application along with all of its dependencies (libraries, runtime, system tools, etc.) so that it can run in a consistent environment across different systems.
 
-	## How Docker Works
+	How Docker Works
 		1.	Containers vs. Virtual Machines (VMs):
 			•	VMs include a full guest operating system on top of a host OS, which makes them heavier (in terms of resource usage) and slower to start.
 			•	Containers use the host operating system’s kernel, which makes them lightweight and faster to spin up.
@@ -11,13 +11,13 @@
 			•	The Docker Engine (daemon) runs on the host machine.
 			•	When you run a container, Docker uses container-specific features of the Linux kernel (like cgroups and namespaces) to isolate and manage processes.
 
-	## Why Docker is Used in Modern Development
+	Why Docker is Used in Modern Development
 		1.	Consistency: “Works on my machine” problems are minimized because the container includes all dependencies.
 		2.	Portability: Containers can be run on any machine that has the Docker Engine, whether on-premises or in the cloud.
 		3.	Scalability: Spinning up multiple containers of the same image is straightforward for load balancing.
 		4.	Continuous Integration/Deployment: Docker can be easily integrated into CI/CD pipelines, allowing rapid and reliable deployments.
 
-   ## Key Docker Features and Commands
+ Key Docker Features and Commands
 	Important Docker Concepts
 		1.	Images:
 			•	A Docker image is a read-only template containing a set of instructions for creating a container.
