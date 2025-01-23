@@ -287,7 +287,10 @@ const LazyComponent = React.lazy(() => import('./LazyComponent'));
 ```
 
 ## What are Higher Order Components (HOCs)?
-A Higher-Order Component (HOC) is a function that takes a component and returns a new component with enhanced functionality. HOCs allow you to reuse logic across components without repeating code.
+
+A Higher-Order Component (HOC) in React is a function that takes a component and returns a new component with additional props or behavior. It’s a pattern that allows you to reuse component logic across your application.
+
+The key idea behind HOCs is that they don’t modify the original component, but instead create a wrapper around it, enhancing it in some way, usually by injecting additional props or functionality.
 
 ## When do we need a Higher-Order Component?
 
