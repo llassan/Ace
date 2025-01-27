@@ -309,8 +309,32 @@ const MyComponentWithLogging = withLogging(MyComponent);
 ```
 In this example, withLogging is a higher-order component that logs a message each time MyComponent renders. The HOC enhances the original component's behavior.
 
+## What are Pure Components?
 
------
+A pure component is a type of component that renders only when there is a change in its state or props. This is achieved by implementing a shallow comparison of its props and state. Essentially, pure components optimize performance by preventing unnecessary re-renders.
+
+Key Characteristics of Pure Components:
+Shallow Comparison:
+- React’s PureComponent automatically performs a shallow comparison between the previous and new values of props and state to decide whether the component should re-render.
+Improved Performance:
+- Since it skips rendering if the props and state haven’t changed, it can lead to performance optimization in certain scenarios.
+No Side Effects:
+- Pure components should ideally be free of side effects and always produce the same output for the same input.
+
+Limitations of Pure Components:
+Shallow Comparison:
+- If the state or props contain complex data structures (like nested objects or arrays), shallow comparison may not detect deep changes, leading to potential bugs.
+Immutable Data Structures Recommended:
+- To fully benefit from pure components, it’s essential to use immutable data structures to ensure changes are detected properly.
+Unnecessary Optimization in Small Applications:
+- Overusing pure components can add complexity without noticeable performance benefits in small or simple applications.
+
+When to Use Pure Components:
+
+	•	When you want to optimize rendering by skipping updates for unchanged props or state.
+	•	When working with large or complex applications where rendering performance is critical.
+ 
+----- ----
 
 1. Public/Manifest.json 
 -> It help us to create PWA (Progressive web application)
