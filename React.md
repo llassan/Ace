@@ -82,7 +82,117 @@ There are four different phases in the lifecycle of a React component:
 
 4. **Unmounting**: 
    - In the last phase, the component will be removed from the DOM. The lifecycle method `componentWillUnmount` is invoked during this phase.
+  
+## What is an event in React?
 
+An event in React is an action triggered by the user or system, such as pressing a key or clicking a mouse. 
+
+- React events use camelCase naming conventions instead of lowercase (as used in HTML).
+- Event handlers are passed as functions in JSX, rather than as strings in HTML.
+
+## What are synthetic events in React?
+
+- Synthetic events are a cross-browser wrapper for native browser events that ensure consistent behavior across all browsers.
+- Methods like `preventDefault()` are part of the synthetic event system.
+
+## What are error boundaries?
+
+Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of crashing the component tree.
+
+### Where can error boundaries detect errors?
+
+- **Render phase**
+- **Inside lifecycle methods**
+- **Inside the constructor**
+
+## What are Higher Order Components (HOCs)?
+
+A Higher-Order Component (HOC) in React is a function that takes a component and returns a new component with additional props or behavior. It’s a pattern that allows you to reuse component logic across your application.
+
+The key idea behind HOCs is that they don’t modify the original component, but instead create a wrapper around it, enhancing it in some way, usually by injecting additional props or functionality.
+
+## When do we need a Higher-Order Component?
+
+HOCs are useful when you need to reuse component logic across multiple components, especially if the components are similar but differ in specific ways.
+Instead of duplicating logic in each component, an HOC abstracts the shared functionality into a single place, making the code more DRY (Don't Repeat Yourself).
+Example of a Higher-Order Component:
+```jsx
+function withLogging(WrappedComponent) {
+  return function(props) {
+    console.log('Component rendered');
+    return <WrappedComponent {...props} />;
+  };
+}
+const MyComponent = () => <div>My Component</div>;
+const MyComponentWithLogging = withLogging(MyComponent);
+```
+In this example, withLogging is a higher-order component that logs a message each time MyComponent renders. The HOC enhances the original component's behavior.
+
+## What are Pure Components?
+
+A pure component is a type of component that renders only when there is a change in its state or props. This is achieved by implementing a shallow comparison of its props and state. Essentially, pure components optimize performance by preventing unnecessary re-renders.
+
+Key Characteristics of Pure Components:
+Shallow Comparison:
+- React’s PureComponent automatically performs a shallow comparison between the previous and new values of props and state to decide whether the component should re-render.
+Improved Performance:
+- Since it skips rendering if the props and state haven’t changed, it can lead to performance optimization in certain scenarios.
+No Side Effects:
+- Pure components should ideally be free of side effects and always produce the same output for the same input.
+
+Limitations of Pure Components:
+Shallow Comparison:
+- If the state or props contain complex data structures (like nested objects or arrays), shallow comparison may not detect deep changes, leading to potential bugs.
+Immutable Data Structures Recommended:
+- To fully benefit from pure components, it’s essential to use immutable data structures to ensure changes are detected properly.
+Unnecessary Optimization in Small Applications:
+- Overusing pure components can add complexity without noticeable performance benefits in small or simple applications.
+
+When to Use Pure Components:
+
+	•	When you want to optimize rendering by skipping updates for unchanged props or state.
+	•	When working with large or complex applications where rendering performance is critical.
+
+## Techniques to Optimize React App Performance:
+
+Here are several techniques to optimize the performance of a React app:
+
+Minimize API Calls & Use CDN for Images:
+Reduce unnecessary network requests and use Content Delivery Networks (CDNs) for faster image loading.
+
+Using useMemo():
+useMemo() is a React hook that caches the result of expensive functions and re-calculates them only when necessary, helping avoid redundant computations during re-renders.
+
+```jsx
+
+const memoizedValue = useMemo(() => expensiveFunction(data), [data]);
+```
+
+Using React.PureComponent:
+React.PureComponent is a base class for components that implements shouldComponentUpdate() with a shallow prop and state comparison. It can help reduce unnecessary re-renders in class components.
+
+```jsx
+class MyComponent extends React.PureComponent { ... }
+```
+
+Maintaining State Colocation:
+Colocate state by keeping it as close as possible to the component that needs it. This minimizes unnecessary re-renders in parent components.
+
+```jsx
+// Instead of keeping state in the parent, move it to the relevant child component
+const ChildComponent = () => {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+};
+```
+
+Lazy Loading:
+Lazy loading reduces the initial load time of your React app by loading components only when needed, rather than all at once.
+
+```jsx
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
+```
+ 
 ## Types of Hooks in React
 
 ### 1. Built-in Hooks
@@ -141,27 +251,7 @@ No, web browsers cannot read JSX directly because JSX is not a regular JavaScrip
 - **Unidirectional data flow**: React uses a single data flow, making it easier to debug.
 - **Dedicated debugging tools**: React provides tools like the React Developer Tools Chrome extension to simplify debugging.
 
-## What is an event in React?
 
-An event in React is an action triggered by the user or system, such as pressing a key or clicking a mouse. 
-
-- React events use camelCase naming conventions instead of lowercase (as used in HTML).
-- Event handlers are passed as functions in JSX, rather than as strings in HTML.
-
-## What are synthetic events in React?
-
-- Synthetic events are a cross-browser wrapper for native browser events that ensure consistent behavior across all browsers.
-- Methods like `preventDefault()` are part of the synthetic event system.
-
-## What are error boundaries?
-
-Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of crashing the component tree.
-
-### Where can error boundaries detect errors?
-
-- **Render phase**
-- **Inside lifecycle methods**
-- **Inside the constructor**
 
 ## Common React Interview Questions
 
@@ -207,9 +297,6 @@ React offers several ways to style components, allowing flexibility and scalabil
    return <div style={divStyle}>Hello, World!</div>;
    ```
 
-
-
-
 2. **Using JavaScript Object**:
 You can create a JavaScript object with your style properties and use it as the value for the style attribute.
 
@@ -246,93 +333,9 @@ import styles from './styles.module.css';
 return <button className={styles.button}>Click Me</button>;
 ```
 
-## Techniques to Optimize React App Performance:
 
-Here are several techniques to optimize the performance of a React app:
 
-Minimize API Calls & Use CDN for Images:
-Reduce unnecessary network requests and use Content Delivery Networks (CDNs) for faster image loading.
 
-Using useMemo():
-useMemo() is a React hook that caches the result of expensive functions and re-calculates them only when necessary, helping avoid redundant computations during re-renders.
-
-```jsx
-
-const memoizedValue = useMemo(() => expensiveFunction(data), [data]);
-```
-
-Using React.PureComponent:
-React.PureComponent is a base class for components that implements shouldComponentUpdate() with a shallow prop and state comparison. It can help reduce unnecessary re-renders in class components.
-
-```jsx
-class MyComponent extends React.PureComponent { ... }
-```
-
-Maintaining State Colocation:
-Colocate state by keeping it as close as possible to the component that needs it. This minimizes unnecessary re-renders in parent components.
-
-```jsx
-// Instead of keeping state in the parent, move it to the relevant child component
-const ChildComponent = () => {
-  const [count, setCount] = useState(0);
-  return <button onClick={() => setCount(count + 1)}>{count}</button>;
-};
-```
-
-Lazy Loading:
-Lazy loading reduces the initial load time of your React app by loading components only when needed, rather than all at once.
-
-```jsx
-const LazyComponent = React.lazy(() => import('./LazyComponent'));
-```
-
-## What are Higher Order Components (HOCs)?
-
-A Higher-Order Component (HOC) in React is a function that takes a component and returns a new component with additional props or behavior. It’s a pattern that allows you to reuse component logic across your application.
-
-The key idea behind HOCs is that they don’t modify the original component, but instead create a wrapper around it, enhancing it in some way, usually by injecting additional props or functionality.
-
-## When do we need a Higher-Order Component?
-
-HOCs are useful when you need to reuse component logic across multiple components, especially if the components are similar but differ in specific ways.
-Instead of duplicating logic in each component, an HOC abstracts the shared functionality into a single place, making the code more DRY (Don't Repeat Yourself).
-Example of a Higher-Order Component:
-```jsx
-function withLogging(WrappedComponent) {
-  return function(props) {
-    console.log('Component rendered');
-    return <WrappedComponent {...props} />;
-  };
-}
-const MyComponent = () => <div>My Component</div>;
-const MyComponentWithLogging = withLogging(MyComponent);
-```
-In this example, withLogging is a higher-order component that logs a message each time MyComponent renders. The HOC enhances the original component's behavior.
-
-## What are Pure Components?
-
-A pure component is a type of component that renders only when there is a change in its state or props. This is achieved by implementing a shallow comparison of its props and state. Essentially, pure components optimize performance by preventing unnecessary re-renders.
-
-Key Characteristics of Pure Components:
-Shallow Comparison:
-- React’s PureComponent automatically performs a shallow comparison between the previous and new values of props and state to decide whether the component should re-render.
-Improved Performance:
-- Since it skips rendering if the props and state haven’t changed, it can lead to performance optimization in certain scenarios.
-No Side Effects:
-- Pure components should ideally be free of side effects and always produce the same output for the same input.
-
-Limitations of Pure Components:
-Shallow Comparison:
-- If the state or props contain complex data structures (like nested objects or arrays), shallow comparison may not detect deep changes, leading to potential bugs.
-Immutable Data Structures Recommended:
-- To fully benefit from pure components, it’s essential to use immutable data structures to ensure changes are detected properly.
-Unnecessary Optimization in Small Applications:
-- Overusing pure components can add complexity without noticeable performance benefits in small or simple applications.
-
-When to Use Pure Components:
-
-	•	When you want to optimize rendering by skipping updates for unchanged props or state.
-	•	When working with large or complex applications where rendering performance is critical.
  
 ----- ----
 
