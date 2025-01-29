@@ -50,6 +50,8 @@ fetchData()
     console.error("Error:", error);
   });
 ```
+### Async/Await: 
+
 Async/await is a newer syntactic sugar introduced in ECMAScript 2017 that simplifies the process of writing asynchronous code in JavaScript. 
 It is built on top of promises and provides a more concise and readable syntax for handling asynchronous operations. Async/await lets engineers write asynchronous code that looks and behaves like synchronous code, making it easier to understand and maintain.
 
