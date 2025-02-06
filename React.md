@@ -213,10 +213,14 @@ const LazyComponent = React.lazy(() => import('./LazyComponent'));
 
 ### useLayoutEffect
 useLayoutEffect is a version of useEffect that fires before the browser repaints the screen.
-Key differences between useEffect and useLayoutEffect:
+
+**Key differences between useEffect and useLayoutEffect:**
+
 useEffect runs asynchronously after the render and after the paint (i.e., the browser has rendered the screen).
 useLayoutEffect runs synchronously after the render but before the paint, ensuring that any DOM updates you make won't cause flickers or visible changes.
-When to use useLayoutEffect:
+
+**When to use useLayoutEffect:**
+
 Read or modify the DOM before the paint happens. For example, if you need to measure the layout or perform animations based on DOM elements that must be fully updated first.
 It helps to prevent any flickers or flashing of unstyled content, as it can block the paint until its work is done.
 Example:
