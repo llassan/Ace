@@ -211,6 +211,48 @@ const LazyComponent = React.lazy(() => import('./LazyComponent'));
   - `useRef()`: Creates a reference to a DOM element in functional components.
   - `useLayoutEffect()`: Reads the layout from the DOM and re-renders synchronously.
 
+### useLayoutEffect
+useLayoutEffect is a version of useEffect that fires before the browser repaints the screen.
+Key differences between useEffect and useLayoutEffect:
+useEffect runs asynchronously after the render and after the paint (i.e., the browser has rendered the screen).
+useLayoutEffect runs synchronously after the render but before the paint, ensuring that any DOM updates you make won't cause flickers or visible changes.
+When to use useLayoutEffect:
+Read or modify the DOM before the paint happens. For example, if you need to measure the layout or perform animations based on DOM elements that must be fully updated first.
+It helps to prevent any flickers or flashing of unstyled content, as it can block the paint until its work is done.
+Example:
+```jsx
+Copy
+import React, { useLayoutEffect, useState, useRef } from 'react';
+
+function MyComponent() {
+  const [height, setHeight] = useState(0);
+  const divRef = useRef(null);
+
+  useLayoutEffect(() => {
+    // This will run synchronously after the DOM is updated
+    setHeight(divRef.current.offsetHeight);
+  }, []);
+
+  return (
+    <div>
+      <div ref={divRef}>
+        {/* Some content */}
+      </div>
+      <p>The height of the div is: {height}px</p>
+    </div>
+  );
+}
+```
+
+In the example above, useLayoutEffect ensures that we get the updated offsetHeight of the div before the browser paints the screen, avoiding a situation where the height might be incorrect or the content flickers.
+
+When not to use it:
+Performance concerns: Since useLayoutEffect blocks the paint, it can be slower, especially for large or complex updates, and may lead to janky animations. For most side effects, useEffect is preferred.
+
+### useReducer
+
+
+
 ## Do Hooks cover all the functionalities provided by the classes?
 
 While React Hooks aim to cover all functionalities of class components, some methods are not yet available with Hooks:
