@@ -255,7 +255,12 @@ Performance concerns: Since useLayoutEffect blocks the paint, it can be slower, 
 
 ### useReducer
 
+The useReducer hook is a React hook that is commonly used to manage complex state logic in a component. It is an alternative to the useState hook and can be especially helpful when the state is more complex, or when the next state depends on the previous one. It is typically used in scenarios where the state involves multiple sub-values or actions that change the state in different ways.
 
+The useReducer hook takes two parameters:
+
+A reducer function that specifies how the state should change based on actions.
+An initial state which is the initial value of the state.
 
 ## Do Hooks cover all the functionalities provided by the classes?
 
