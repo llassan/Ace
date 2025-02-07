@@ -1,5 +1,10 @@
 # Javascript
 
+## What is JavaScript?
+
+JavaScript is a high-level, dynamic, and interpreted programming language primarily used for building interactive and dynamic websites. 
+
+It is an essential part of modern web development, allowing developers to create rich, interactive user interfaces, handle events, and perform real-time updates on web pages without requiring the page to reload.
 
 ## 1. Can you explain how JavaScript handles asynchronous operations?
 
