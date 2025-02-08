@@ -10,7 +10,7 @@ It is an essential part of modern web development, allowing developers to create
 
 1. **call() Method:**
 
-The call() method allows you to call a function with a specified 'this' value and individual arguments passed to the function.
+The call() method allows you to call a function with a specified 'this' value and an individual arguments passed to the function.
 
 **Syntax:**
 
