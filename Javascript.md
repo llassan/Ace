@@ -6,6 +6,15 @@ JavaScript is a high-level, dynamic, and interpreted programming language primar
 
 It is an essential part of modern web development, allowing developers to create rich, interactive user interfaces, handle events, and perform real-time updates on web pages without requiring the page to reload.
 
+## Call, Apply and Bind
+
+**call() ** Method
+
+The call() method allows you to call a function with a specified this value and individual arguments passed to the function.
+
+
+https://www.youtube.com/watch?v=75W8UPQ5l7k&t=330s
+
 ## this keyword difference in normal vs arrow function
 
 **1. Normal Functions:**
