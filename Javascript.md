@@ -6,6 +6,32 @@ JavaScript is a high-level, dynamic, and interpreted programming language primar
 
 It is an essential part of modern web development, allowing developers to create rich, interactive user interfaces, handle events, and perform real-time updates on web pages without requiring the page to reload.
 
+## What is Hoisting?
+
+Hoisting is a JavaScript behavior where variable and function declarations are moved (“hoisted”) to the top of their containing scope during compilation. This means you can use variables and functions before they are declared in the code.
+
+**Hoisting in Functions**
+Function declarations are fully hoisted, meaning they can be called before they appear in the code.
+```jsx
+sayHello(); // Works fine
+function sayHello() {
+  console.log("Hello, world!");
+}
+```
+**Hoisting in Variables**
+Variable declarations are hoisted, but their values are not initialized. Variables declared with var are hoisted with an undefined value, while let and const remain uninitialized (temporal dead zone).
+
+```jsx
+console.log(x); // undefined
+var x = 5;
+console.log(x); // 5
+```
+
+However, let and const behave differently:
+```jsx
+console.log(y); // ReferenceError: Cannot access 'y' before initialization
+let y = 10;
+```
 ## 1. Can you explain how JavaScript handles asynchronous operations?
 
 JavaScript is a programming language capable of handling asynchronous operations efficiently. There are various methods through which JavaScript handles asynchronous operations such as callbacks, promises, and async/await.
