@@ -6,6 +6,46 @@ JavaScript is a high-level, dynamic, and interpreted programming language primar
 
 It is an essential part of modern web development, allowing developers to create rich, interactive user interfaces, handle events, and perform real-time updates on web pages without requiring the page to reload.
 
+## this keyword difference in normal vs arrow function
+
+1. Normal Functions:
+In a normal function, the value of this is determined by how the function is called (its execution context).
+When a normal function is called as a method on an object, this refers to the object. If the function is called in a standalone manner, this refers to the global object (in non-strict mode) or undefined (in strict mode).
+Example:
+
+```bash
+const person = {
+  name: "Alice",
+  greet: function() {
+    console.log(this.name);  // `this` refers to `person`
+  }
+};
+
+person.greet();  // Output: Alice
+
+const greet = person.greet;
+greet();  // In non-strict mode, this refers to the global object; in strict mode, it refers to undefined
+```
+
+2. Arrow Functions:
+Arrow functions don't have their own this value. Instead, they lexically bind this, meaning the value of this is inherited from the surrounding context in which the arrow function is defined. This is often referred to as "lexical scoping."
+In an arrow function, this will refer to the same value of this as it does in the scope where the arrow function is defined, not how it’s invoked.
+Example:
+
+```bash
+const person = {
+  name: "Bob",
+  greet: () => {
+    console.log(this.name);  // `this` does NOT refer to `person`, but to the global context
+  }
+};
+
+person.greet();  // In non-strict mode, `this` refers to the global object (e.g., `window` in a browser)
+
+const greet = person.greet;
+greet();  // Still does not work as expected because `this` is bound lexically, not to `person`
+```
+
 ## What is Hoisting?
 
 Hoisting is a JavaScript behavior where variable and function declarations are moved (“hoisted”) to the top of their containing scope during compilation. This means you can use variables and functions before they are declared in the code.
