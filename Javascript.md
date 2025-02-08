@@ -8,9 +8,9 @@ It is an essential part of modern web development, allowing developers to create
 
 ## Call, Apply and Bind
 
-**call() ** Method
+**call()** Method:
 
-The call() method allows you to call a function with a specified this value and individual arguments passed to the function.
+The call() method allows you to call a function with a specified 'this' value and individual arguments passed to the function.
 
 
 https://www.youtube.com/watch?v=75W8UPQ5l7k&t=330s
