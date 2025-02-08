@@ -10,9 +10,10 @@ It is an essential part of modern web development, allowing developers to create
 
 **1. Normal Functions:**
 
-In a normal function, the value of this is determined by how the function is called (its execution context).
+- In a normal function, the value of this is determined by how the function is called (its execution context).
 
-When a normal function is called as a method on an object, this refers to the object. If the function is called in a standalone manner, this refers to the global object (in non-strict mode) or undefined (in strict mode).
+- When a normal function is called as a method on an object, this refers to the object. If the function is called in a standalone manner, this refers to the global object (in non-strict mode) or undefined (in strict mode).
+
 Example:
 
 ```bash
@@ -31,9 +32,10 @@ greet();  // In non-strict mode, this refers to the global object; in strict mod
 
 **2. Arrow Functions:**
 
-Arrow functions don't have their own this value. Instead, they lexically bind this, meaning the value of this is inherited from the surrounding context in which the arrow function is defined. This is often referred to as "lexical scoping."
+- Arrow functions don't have their own this value. Instead, they lexically bind this, meaning the value of this is inherited from the surrounding context in which the arrow function is defined. This is often referred to as "lexical scoping."
 
-In an arrow function, this will refer to the same value of this as it does in the scope where the arrow function is defined, not how it’s invoked.
+- In an arrow function, this will refer to the same value of this as it does in the scope where the arrow function is defined, not how it’s invoked.
+
 Example:
 
 ```bash
