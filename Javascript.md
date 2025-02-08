@@ -8,10 +8,96 @@ It is an essential part of modern web development, allowing developers to create
 
 ## Call, Apply and Bind
 
-**call()** Method:
+1. **call() Method:**
 
 The call() method allows you to call a function with a specified 'this' value and individual arguments passed to the function.
 
+**Syntax:**
+
+```bash
+func.call(thisArg, arg1, arg2, ...)
+thisArg: The value to use as this when calling the function.
+arg1, arg2, ...: The arguments you want to pass to the function.
+```
+
+**Example:**
+
+```bash
+const person = {
+  firstName: "John",
+  lastName: "Doe"
+};
+
+function fullName(city, country) {
+  console.log(this.firstName + " " + this.lastName + " from " + city + ", " + country);
+}
+
+fullName.call(person, "New York", "USA");
+// Output: John Doe from New York, USA
+```
+
+In this case, call() is used to set the this value to the person object, and then the function is invoked with two arguments "New York" and "USA".
+
+2. **apply() Method:**
+The apply() method is similar to call(), but instead of passing arguments individually, you pass them as an array (or array-like object).
+
+**Syntax:**
+
+```bash
+func.apply(thisArg, [arg1, arg2, ...])
+thisArg: The value to use as this when calling the function.
+[arg1, arg2, ...]: An array or array-like object containing the arguments.
+```
+
+**Example:**
+
+```bash
+const person = {
+  firstName: "Jane",
+  lastName: "Doe"
+};
+
+function fullName(city, country) {
+  console.log(this.firstName + " " + this.lastName + " from " + city + ", " + country);
+}
+
+fullName.apply(person, ["Los Angeles", "USA"]);
+// Output: Jane Doe from Los Angeles, USA
+```
+
+Here, apply() is used to set this to person and pass the arguments in an array ["Los Angeles", "USA"].
+
+3. **bind() Method**
+The bind() method returns a new function that, when called, has its this value set to the provided thisArg. Unlike call() and apply(), which immediately invoke the function, bind() does not invoke the function right away—it returns a new function that you can invoke later with the correct this value.
+
+**Syntax:**
+
+```bash
+const newFunc = func.bind(thisArg, arg1, arg2, ...)
+thisArg: The value to use as this when calling the new function.
+arg1, arg2, ...: Arguments that will be pre-set in the new function.
+```
+
+**Example:**
+
+```bash
+const person = {
+  firstName: "Alice",
+  lastName: "Smith"
+};
+
+function fullName(city, country) {
+  console.log(this.firstName + " " + this.lastName + " from " + city + ", " + country);
+}
+
+const boundFullName = fullName.bind(person, "London");
+// Now `boundFullName` has `this` set to `person` and "London" as the first argument
+
+boundFullName("England");
+// Output: Alice Smith from London, England
+```
+
+In this case, bind() is used to create a new function (boundFullName) with this set to person and the first argument "London" pre-filled. The second argument "England" is passed when calling boundFullName() later.
 
 https://www.youtube.com/watch?v=75W8UPQ5l7k&t=330s
 
@@ -23,7 +109,7 @@ https://www.youtube.com/watch?v=75W8UPQ5l7k&t=330s
 
 - When a normal function is called as a method on an object, this refers to the object. If the function is called in a standalone manner, this refers to the global object (in non-strict mode) or undefined (in strict mode).
 
-Example:
+**Example:**
 
 ```bash
 const person = {
@@ -45,7 +131,7 @@ greet();  // In non-strict mode, this refers to the global object; in strict mod
 
 - In an arrow function, this will refer to the same value of this as it does in the scope where the arrow function is defined, not how it’s invoked.
 
-Example:
+**Example:**
 
 ```bash
 const person = {
