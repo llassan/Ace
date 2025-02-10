@@ -239,7 +239,8 @@ This feature allows functions to remember and access variables from an outer fun
 
 The outer function's variables and parameters are then accessible within the inner function, even after the outer function has finished running.
 
-This is a powerful tool in JavaScript programming, as it allows developers to create functions that can retain information and operate with greater flexibility and efficiency.
+A closure in JavaScript is a powerful concept that occurs when a function retains access to its lexical scope (the scope in which it was created) even after that scope has finished executing. In other words, a closure allows a function to "remember" the environment in which it was created, including the variables that were in scope at the time.
+
  However, it's also important to be aware of potential memory leaks and unintended consequences that can arise from improper use of closures.
 
  ## 3. How does JavaScript's event loop work?
