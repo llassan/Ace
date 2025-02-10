@@ -225,7 +225,7 @@ Read or modify the DOM before the paint happens. For example, if you need to mea
 It helps to prevent any flickers or flashing of unstyled content, as it can block the paint until its work is done.
 Example:
 ```jsx
-Copy
+
 import React, { useLayoutEffect, useState, useRef } from 'react';
 
 function MyComponent() {
