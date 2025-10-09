@@ -7,7 +7,9 @@ By using frameworks, developers can focus more on solving business problems rath
 
 ### Why React.js?
 
-React.js is a flexible and efficient JavaScript library for building user interfaces. <br>
+React.js is a flexible and efficient JavaScript library for building user interfaces. 
+<br>
+<br>
 It uses a **component-based architecture**, enabling reusable & maintainable code, and a Virtual DOM for **optimized rendering** and **better performance**. 
 <br>
 <br>
