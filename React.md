@@ -2,7 +2,7 @@
 
 ### Why do we need a Framework?
 
-Frameworks provide a structured and efficient way to build modern web applications. 
+Frameworks provide a structured and efficient way to build modern web applications. <br>
 By using frameworks, developers can focus more on solving business problems rather than reinventing the wheel for common functionalities.
 
 ### Why React.js?
