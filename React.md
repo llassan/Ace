@@ -10,7 +10,8 @@ By using frameworks, developers can focus more on solving business problems rath
 React.js is a flexible and efficient JavaScript library for building user interfaces. 
 <br>
 <br>
-It uses a **component-based architecture**, enabling reusable & maintainable code, and a Virtual DOM for **optimized rendering** and **better performance**. 
+It uses a **component-based architecture**, Enabling Reusable & Maintainable Code, &
+a Virtual DOM for **optimized rendering** and **better performance**. 
 <br>
 <br>
 Its declarative syntax simplifies UI development, while its large ecosystem and community provide extensive tools and resources. 
