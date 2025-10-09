@@ -10,7 +10,7 @@ By using frameworks, developers can focus more on solving business problems rath
 React.js is a flexible and efficient JavaScript library for building user interfaces. <br>
 It uses a **component-based architecture**, enabling reusable & maintainable code, and a Virtual DOM for **optimized rendering** and **better performance**. <br>
 Its declarative syntax simplifies UI development, while its large ecosystem and community provide extensive tools and resources. <br>
-React is versatile, working seamlessly with libraries for state management (e.g., Redux) and routing, and it supports cross-platform development through tools like React Native. 
+React is versatile, working seamlessly with libraries for state management (e.g., Redux) and routing, and it supports cross-platform development through tools like React Native. <br>
 Backed by Facebook and widely used by major companies, React is a reliable choice for scalable, dynamic applications.
 
 ### What is JSX?
