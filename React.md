@@ -14,7 +14,7 @@ It has a **component-based architecture**, Enabling Reusable & Maintainable Code
 a Virtual DOM for **optimized rendering** and **better performance**. 
 <br>
 <br>
-Its declarative syntax simplifies UI development, while its large ecosystem and community provide extensive tools and resources. 
+It follows declarative syntax which simplifies UI development, while its **large ecosystem and community** provide extensive **tools and resources.** 
 <br>
 <br>
 React is versatile, working seamlessly with libraries for state management (e.g., Redux) and routing, and it supports cross-platform development through tools like React Native. <br>
