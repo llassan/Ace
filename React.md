@@ -21,7 +21,11 @@ React is versatile, working seamlessly with libraries for state management (e.g.
 Backed by Facebook and widely used by major companies, React is a reliable choice for scalable, dynamic applications.
 
 ### What is JSX?
-JSX is a XML-like syntax extension to ECMAScript (the acronym stands for JavaScript XML). Basically it just provides syntactic sugar for the React.createElement() function, giving us expressiveness of JavaScript along with HTML like template syntax.
+
+JSX (JavaScript XML) is a syntax extension for JavaScript used primarily with React to describe what the UI should look like. 
+
+It allows you to write HTML-like code inside JavaScript, which React then transforms into JavaScript objects representing the UI components.
+
 
 In the example below text inside `<h1>` tag is returned as JavaScript function to the render function.
 ```jsx harmony
