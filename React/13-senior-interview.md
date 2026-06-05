@@ -518,7 +518,7 @@ Avoid these patterns — interviewers notice all of them.
 
 ---
 
-## Rapid-Fire
+## ⚡ Rapid-Fire
 
 Quick-recall across the full senior interview kit.
 
@@ -540,7 +540,7 @@ Quick-recall across the full senior interview kit.
 
 ---
 
-## Red Flags
+## 🚩 Red Flags
 
 - You cannot quantify the impact of anything you have worked on.
 - All your stories are about what "we" did — you cannot isolate your own contribution.

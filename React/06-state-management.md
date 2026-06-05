@@ -1,6 +1,8 @@
-# 06 — State Management
+# State Management
 
 State management is one of the most consequential architectural decisions in a React application. Senior engineers are distinguished not by knowing every library's API, but by correctly classifying state first and then selecting the minimal, appropriate tool — avoiding the endemic mistake of treating every piece of state as global client state.
+
+> **See also:** This file covers the *philosophy* of choosing a tool. For the data-fetching *mechanics* (cancellation, races, retries, real-time transports, TanStack Query internals) see [`15-data-fetching.md`](./15-data-fetching.md).
 
 ---
 

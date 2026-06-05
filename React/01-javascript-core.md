@@ -686,6 +686,246 @@ const metadata = new WeakMap(); // key is weakly held
 
 ---
 
+## Currying & Partial Application
+
+### Q: What is the difference between currying and partial application, and when do you actually reach for them?
+
+**Answer:**
+
+- **Currying** transforms a function of `n` arguments into a chain of `n` unary functions: `f(a, b, c)` becomes `f(a)(b)(c)`. Each call returns a new function until all arguments are supplied, then the original function executes.
+- **Partial application** fixes some arguments of a function up front, returning a new function that accepts the remaining arguments. It does not require one argument at a time.
+
+```js
+// Currying: one arg per call
+const add = a => b => a + b;
+const add5 = add(5);
+add5(3); // 8
+
+// Partial application: fix one or more args at once
+function multiply(a, b, c) { return a * b * c; }
+const double = multiply.bind(null, 2);    // fixes only 'a'
+double(3, 4); // 24
+const doubleThenTriple = multiply.bind(null, 2, 3); // fixes a and b
+doubleThenTriple(4); // 24
+```
+
+**Why/when use them:**
+
+- **Point-free / pipeline style** — compose small, configured functions without naming intermediate data:
+  ```js
+  const pipeline = [double, add5, String].reduce((f, g) => x => g(f(x)));
+  pipeline(3); // '11'
+  ```
+- **Reusable configured functions** — build a family of functions from one generic one:
+  ```js
+  const validateWith = schema => data => schema.safeParse(data);
+  const validateUser = validateWith(userSchema);
+  const validatePost = validateWith(postSchema);
+  ```
+- **React event handler factories** — avoid inline arrow functions on every render:
+  ```tsx
+  // Without currying: creates a new fn reference per render per item
+  items.map(item => <button onClick={() => handleSelect(item.id)}>...</button>)
+
+  // With currying: handleSelect(id) returns a stable handler shape
+  const handleSelect = (id: string) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    dispatch({ type: 'SELECT', id });
+  };
+  items.map(item => <button onClick={handleSelect(item.id)}>...</button>)
+  // Pair with useCallback + useMemo for full stability if needed
+  ```
+
+**Generic variadic `curry` implementation:**
+
+```js
+function curry(fn) {
+  const arity = fn.length; // number of declared params
+
+  return function curried(...args) {
+    if (args.length >= arity) {
+      return fn(...args); // enough args — execute
+    }
+    // Not enough args — return a function collecting more
+    return function (...moreArgs) {
+      return curried(...args, ...moreArgs);
+    };
+  };
+}
+
+// Usage
+const curriedAdd = curry((a, b, c) => a + b + c);
+curriedAdd(1)(2)(3);   // 6
+curriedAdd(1, 2)(3);   // 6  — variadic: can pass multiple per call
+curriedAdd(1)(2, 3);   // 6
+```
+
+The implementation relies on `fn.length` (the declared parameter count). This breaks with rest params (`...args`) or default params — both set `fn.length` to zero or fewer. Libraries like Ramda and `lodash/fp` use a manually specified arity for this reason.
+
+**Partial application with `Function.prototype.bind`:**
+
+```js
+function request(method, url, data) {
+  return fetch(url, { method, body: JSON.stringify(data) });
+}
+
+const get  = request.bind(null, 'GET');
+const post = request.bind(null, 'POST');
+
+get('/api/users');
+post('/api/users', { name: 'Vikash' });
+```
+
+`bind` is the native partial-application tool for the leftmost arguments. For right-side or non-contiguous argument binding, you need a helper.
+
+⚠️ **Gotcha:** Currying and point-free style can damage readability when overused. A chain of five curried functions with single-letter names is harder to debug than a straightforward named function. Reach for it when the abstraction genuinely reduces duplication — not to signal cleverness. TypeScript inference also degrades with deep curried signatures unless you annotate carefully.
+
+**Follow-ups they'll ask:**
+- What does `fn.length` return and what breaks it?
+- How would you implement `partial` to allow gaps / placeholder arguments (like Ramda's `__`)?
+- How is currying used in functional libraries like Ramda or `lodash/fp`?
+- How do you keep a curried event handler stable across React re-renders?
+
+---
+
+## Polyfills
+
+### Q: What is a polyfill, how does it differ from a transpile and a shim, and how do you write one correctly?
+
+**Answer:**
+
+| Term | What it does | Example |
+|---|---|---|
+| **Polyfill** | Implements a missing *runtime* API in JS, at runtime | `Array.prototype.flat` for IE11 |
+| **Transpile** | Converts newer *syntax* to older syntax at build time | Arrow functions → `function` expressions via Babel |
+| **Shim** | Broader term — any compatibility layer; polyfills are a subset. A shim may wrap an existing (broken) implementation, not just fill a missing one | `es5-shim` fixing `Array.prototype.forEach` in old IE |
+
+A transpiler cannot add new runtime APIs (`Promise`, `fetch`, `ResizeObserver`) — those require polyfills. Both are needed together for full compatibility.
+
+**How `core-js` + `babel-preset-env` + `browserslist` work together:**
+
+```json
+// .browserslistrc
+> 0.5%
+last 2 versions
+not dead
+```
+
+```js
+// babel.config.js
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {
+      useBuiltIns: 'usage',  // inject only polyfills actually used in your code
+      corejs: 3,             // pull from core-js v3
+      targets: { browsers: ['> 0.5%', 'last 2 versions'] },
+    }],
+  ],
+};
+```
+
+`useBuiltIns: 'usage'` statically analyzes your code, detects which APIs you call, cross-references the browserslist target support matrix, and injects only the necessary `core-js` imports. This is how you avoid shipping 40 KB of polyfills for a feature your codebase never uses. See **file 19 (build tools)** for the full Webpack/Vite integration details.
+
+**Feature detection before patching prototypes:**
+
+Always guard a polyfill with a feature check — never blindly overwrite a native implementation:
+
+```js
+if (!Array.prototype.flat) {
+  Array.prototype.flat = function myFlat(depth = 1) { ... };
+}
+```
+
+**Writing polyfills from scratch (classic interview asks):**
+
+`Array.prototype.myMap`:
+
+```js
+if (!Array.prototype.myMap) {
+  Array.prototype.myMap = function myMap(callback, thisArg) {
+    if (typeof callback !== 'function') {
+      throw new TypeError(callback + ' is not a function');
+    }
+    const result = new Array(this.length);
+    for (let i = 0; i < this.length; i++) {
+      if (i in this) { // skip holes in sparse arrays
+        result[i] = callback.call(thisArg, this[i], i, this);
+      }
+    }
+    return result;
+  };
+}
+```
+
+`Promise.all` polyfill:
+
+```js
+if (!Promise.all) {
+  Promise.all = function promiseAll(iterable) {
+    return new Promise((resolve, reject) => {
+      const promises = Array.from(iterable);
+      if (promises.length === 0) return resolve([]);
+
+      const results = new Array(promises.length);
+      let remaining = promises.length;
+
+      promises.forEach((p, i) => {
+        Promise.resolve(p).then(value => {
+          results[i] = value;
+          if (--remaining === 0) resolve(results);
+        }, reject); // first rejection short-circuits
+      });
+    });
+  };
+}
+```
+
+`Function.prototype.bind` polyfill (frequently asked):
+
+```js
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function bind(thisArg) {
+    if (typeof this !== 'function') {
+      throw new TypeError('bind called on non-function');
+    }
+    const originalFn = this;
+    const boundArgs = Array.prototype.slice.call(arguments, 1); // args after thisArg
+
+    function Bound() {
+      const callArgs = boundArgs.concat(Array.prototype.slice.call(arguments));
+      // Support `new BoundFn()` — 'new' should ignore the bound 'this'
+      return originalFn.apply(
+        this instanceof Bound ? this : thisArg,
+        callArgs
+      );
+    }
+
+    // Preserve the prototype chain so instanceof checks work
+    if (originalFn.prototype) {
+      Bound.prototype = Object.create(originalFn.prototype);
+    }
+    return Bound;
+  };
+}
+```
+
+The `new` support (`this instanceof Bound`) is what separates a production polyfill from a naive one — when the bound function is used as a constructor, the bound `thisArg` must be ignored in favor of the newly created object.
+
+**Risk of monkey-patching built-ins:**
+
+Patching `Array.prototype` or `Object.prototype` pollutes the global scope for every piece of code in the runtime — including third-party libraries and browser extensions. The MooTools library famously patched `Array.prototype.flatten` with a different signature, which broke the TC39 proposal that later landed as `Array.prototype.flat`. Best practice: always guard with feature detection, never change existing method behavior, and prefer Symbol-keyed methods if you must add to built-ins in library code.
+
+> 💡 Senior insight: In a modern React project, you rarely write polyfills by hand — `babel-preset-env` + `core-js` handles it automatically. But the interview asks about them because they test whether you understand the difference between build-time transformation and runtime API augmentation, know the prototype chain deeply enough to implement correctly, and are aware of the global-pollution risks that caused real ecosystem breakage. Understanding `Function.prototype.bind`'s `new` support also proves you've internalized how `new` works under the hood.
+
+**Follow-ups they'll ask:**
+- How would you polyfill `fetch`? (It's not on a prototype — it's a global. Add `window.fetch = ...` with the same feature check.)
+- What is `useBuiltIns: 'entry'` vs `'usage'` in `babel-preset-env`?
+- Why can't Babel transpile `Promise` without a polyfill?
+- What went wrong with MooTools and `Array.prototype.flatten`?
+- How would you test that your polyfill matches native behavior?
+
+---
+
 ## ⚡ Rapid-Fire
 
 **Q: Difference between `undefined` and `null`?**
@@ -732,6 +972,15 @@ A: Evaluates expression, returns `undefined`. `void 0` is a reliable way to get 
 
 **Q: How does tree-shaking know what to remove?**
 A: Static `import`/`export` analysis at bundle time. Side-effect-free marking in `package.json` (`"sideEffects": false`) tells bundlers they can safely drop unused exports.
+
+**Q: What is the difference between currying and partial application?**
+A: Currying converts a multi-argument function into a chain of unary functions (`f(a)(b)(c)`). Partial application fixes one or more arguments up front and returns a function awaiting the rest — it doesn't enforce one-arg-at-a-time.
+
+**Q: What breaks the generic `curry(fn)` implementation based on `fn.length`?**
+A: Rest parameters (`...args`) and default parameters — both cause `fn.length` to report 0 or fewer than expected, so the arity check never triggers and the function never executes.
+
+**Q: Polyfill vs shim vs transpile — one-line each?**
+A: Polyfill = JS code that implements a *missing* runtime API at runtime. Shim = any compatibility layer (may patch broken, not just absent, behavior). Transpile = build-time syntax conversion (arrow → function) — cannot add new APIs.
 
 **Q: What is the difference between `call` and `apply`?**
 A: Both invoke a function with explicit `this`. `call(ctx, arg1, arg2)` takes args spread; `apply(ctx, [arg1, arg2])` takes args as an array.

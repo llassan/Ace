@@ -2,6 +2,8 @@
 
 Frontend system design is increasingly the dominant evaluation axis for senior and lead React roles — it tests whether you can reason about architecture, trade-offs, and constraints across the entire client surface. This guide gives you a repeatable framework (RADIO) to drive any design interview, paired with worked examples and cross-cutting concerns you must raise unprompted to signal seniority.
 
+> **See also:** This file designs *products/features* end-to-end. For *codebase & organizational* architecture (folder structure, monorepos, design systems, micro-frontends) see [`17-frontend-architecture.md`](./17-frontend-architecture.md).
+
 ---
 
 ## The RADIO Framework

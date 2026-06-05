@@ -692,7 +692,7 @@ Re-run Profiler and Performance panel. Compare flame graphs before/after. Check 
 
 ---
 
-## Rapid-Fire
+## ⚡ Rapid-Fire
 
 **Q: What's the first thing you check when a React app is slow?**
 React DevTools Profiler — how many components are re-rendering per interaction and what's triggering them.
@@ -726,7 +726,7 @@ CPU-intensive work that would block the main thread for >50ms — e.g., parsing 
 
 ---
 
-## Red Flags
+## 🚩 Red Flags
 
 - **Wrapping every component in `React.memo` by default** — signals cargo-cult optimization; no measurement, no targeted fix.
 - **Adding `useMemo` to trivial values** — `useMemo(() => a + b, [a, b])` has more overhead than the computation it "optimizes."

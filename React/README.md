@@ -22,8 +22,48 @@ A deep, opinionated interview-preparation kit for **senior / lead front-end engi
 | 09 | [`09-testing.md`](./09-testing.md) | RTL, Jest/Vitest, Playwright, mocking, testing strategy & pyramid | Seniors own quality, not just code |
 | 10 | [`10-security.md`](./10-security.md) | XSS, CSRF, auth/token storage, RBAC, dependency & supply-chain risk | Front-end is an attack surface |
 | 11 | [`11-accessibility.md`](./11-accessibility.md) | WCAG, ARIA, keyboard nav, focus management, semantic HTML | Often the differentiator in senior loops |
-| 12 | [`12-system-design.md`](./12-system-design.md) | Frontend system design, micro-frontends, design systems, patterns | The core of senior+ interviews |
+| 12 | [`12-system-design.md`](./12-system-design.md) | Frontend system design, micro-frontends, worked examples (feed/grid/typeahead) | The core of senior+ interviews |
 | 13 | [`13-senior-interview.md`](./13-senior-interview.md) | Behavioral, leadership, scenario, debugging stories, rapid-fire | Tech alone won't get the senior offer |
+| 14 | [`14-react-patterns.md`](./14-react-patterns.md) | HOC, render props, compound, provider, headless, container/presentational | Know why each faded or survived |
+| 15 | [`15-data-fetching.md`](./15-data-fetching.md) | Fetch/Axios, races & cancellation, TanStack Query mechanics, WebSocket/SSE/polling | Most bugs are fetch-correctness bugs |
+| 16 | [`16-routing.md`](./16-routing.md) | React Router (data routers), protected routes, RBAC, History API | Routing + access control come up constantly |
+| 17 | [`17-frontend-architecture.md`](./17-frontend-architecture.md) | Folder structure, monorepos (Nx/Turborepo), design systems, micro-frontends | Codebase/team architecture vs product design |
+| 18 | [`18-browser-internals.md`](./18-browser-internals.md) | Critical Rendering Path, reflow/repaint, layout thrashing, storage, networking | The layer beneath React that explains perf |
+| 19 | [`19-build-tools-bundlers.md`](./19-build-tools-bundlers.md) | Webpack/Vite/Rollup/esbuild/SWC/Babel, tree-shaking, source maps | How source becomes an optimized bundle |
+| 20 | [`20-cicd.md`](./20-cicd.md) | GitHub Actions, Docker, pipelines, feature flags, release strategies | Seniors own shipping, not just code |
+| 21 | [`21-common-interview-questions.md`](./21-common-interview-questions.md) | Consolidated cram bank — crisp answers + deep-dive pointers | The day-before revision sheet |
+
+---
+
+## 🔗 Maps to the full 0–7 YOE topic outline
+
+This kit covers the entire 23-section preparation outline; some sections are merged where they overlap:
+
+| Outline section | Covered in |
+|---|---|
+| 1. JavaScript Fundamentals | `01` (incl. currying, polyfills, GC) |
+| 2. React Fundamentals | `03` |
+| 3. React Lifecycle | `03` (class lifecycle ↔ hooks mapping) + `04` |
+| 4. React Hooks | `04` |
+| 5. Advanced Hooks | `04` (custom hooks, pitfalls) + `14` (hook patterns) |
+| 6. State Management | `06` |
+| 7. React Patterns | `14` |
+| 8. React Performance | `07` |
+| 9. React Internals | `05` |
+| 10. TypeScript for React | `02` |
+| 11. Data Fetching | `15` (+ `06` for server-state philosophy) |
+| 12. Routing | `16` |
+| 13. Next.js | `08` |
+| 14. Frontend Architecture | `17` (+ `12` for product design) |
+| 15. Security | `10` |
+| 16. Accessibility | `11` |
+| 17. Testing | `09` |
+| 18. Browser Internals | `18` |
+| 19. Build Tools & Bundlers | `19` (+ `07` for bundle perf) |
+| 20. CI/CD | `20` |
+| 21. Frontend System Design | `12` |
+| 22. Leadership & Senior-Level | `13` |
+| 23. Common Interview Questions | `21` |
 
 ---
 
@@ -53,13 +93,16 @@ Lead with the **trade-off and the failure mode**. That's the tell.
 ## 🗓️ Suggested 2-week plan
 
 - **Days 1–2**: JS core + TypeScript (01, 02) — the foundation everything else leans on.
-- **Days 3–5**: React internals — fundamentals, hooks, rendering (03, 04, 05).
-- **Days 6–7**: State + performance (06, 07) — practice "why did this re-render" out loud.
-- **Days 8–9**: Next.js + RSC mental model (08) — know the App Router caching story cold.
-- **Day 10**: Testing (09).
+- **Days 3–5**: React internals — fundamentals, hooks, rendering, patterns (03, 04, 05, 14).
+- **Days 6–7**: State + data fetching + performance (06, 15, 07) — practice "why did this re-render" out loud.
+- **Day 8**: Routing + browser internals (16, 18) — CRP and reflow/repaint cold.
+- **Day 9**: Next.js + RSC mental model (08) — know the App Router caching story cold.
+- **Day 10**: Testing + build tools + CI/CD (09, 19, 20).
 - **Day 11**: Security + a11y (10, 11).
-- **Days 12–13**: System design (12) — do 3 mock designs end-to-end.
-- **Day 14**: Behavioral (13) — write out 6 STAR stories.
+- **Days 12–13**: Architecture + system design (17, 12) — do 3 mock designs end-to-end.
+- **Day 14**: Behavioral (13) + skim the cram sheet (21) — write out 6 STAR stories.
+
+> **Crunched for time?** Read [`21-common-interview-questions.md`](./21-common-interview-questions.md) first — it's the consolidated cram sheet with pointers into every deep-dive.
 
 ---
 

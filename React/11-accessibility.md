@@ -1,4 +1,4 @@
-# 11 — Accessibility (A11y) in React
+# Accessibility (A11y) in React
 
 Accessibility is the senior differentiator in frontend interviews because it requires you to understand the browser's internal model, platform conventions, and the human cost of getting it wrong. This file covers WCAG, the accessibility tree, keyboard patterns, focus management, ARIA, and how to audit and test components end-to-end.
 

@@ -712,7 +712,7 @@ For advanced virtualization, code splitting, and Web Worker patterns, see file 0
 
 ---
 
-## Rapid-Fire
+## ⚡ Rapid-Fire
 
 **Q: Can React render without committing?**
 Yes. In Concurrent Mode, React may render (call component functions) and then discard the work-in-progress tree if a higher-priority update arrives.
@@ -740,7 +740,7 @@ Yes. A key change means a different identity to React — the previous fiber is 
 
 ---
 
-## Red Flags
+## 🚩 Red Flags
 
 - Defining components inside other components ("I do it to share state easily") — causes remount on every parent render, one of the most common React performance bugs.
 - "I added `memo` everywhere to make the app faster" without profiling — memo has overhead; untargeted use can slow down simple components.

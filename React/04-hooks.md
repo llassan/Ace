@@ -417,6 +417,51 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, Props>((props, ref) => {
 
 ---
 
+## useDebugValue — DevTools Labeling for Custom Hooks
+
+### What does useDebugValue do and when should you use it?
+
+**Mental model:** `useDebugValue` attaches a label to a custom hook that is displayed in the React DevTools "Hooks" panel. It has zero effect on behavior and zero effect in production — it exists purely to improve the developer experience when inspecting hook state.
+
+Two critical constraints: it only works **inside custom hooks** (not components), and it **only affects DevTools display**.
+
+```ts
+function useOnlineStatus(): boolean {
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handler = () => setIsOnline(navigator.onLine);
+    window.addEventListener('online', handler);
+    window.addEventListener('offline', handler);
+    return () => {
+      window.removeEventListener('online', handler);
+      window.removeEventListener('offline', handler);
+    };
+  }, []);
+
+  // DevTools shows: OnlineStatus: "Online" or "Offline"
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+
+  return isOnline;
+}
+```
+
+**Lazy-formatting second argument:** if computing the display value is expensive, pass a formatter function as the second argument. React only calls it when the hook is actually being inspected in DevTools, not on every render.
+
+```ts
+useDebugValue(connectionStats, (stats) =>
+  `${stats.latency}ms — ${stats.packetLoss}% loss`
+);
+```
+
+This deferred form is the right default any time the label requires non-trivial computation (date formatting, JSON serialization, string interpolation over large objects).
+
+> 💡 Senior insight: `useDebugValue` is a library-author tool. If you are publishing a custom hook package, label internal state so consumers get a meaningful DevTools view instead of raw primitives. In application code, use it only on hooks complex enough that raw state values are ambiguous without context.
+
+⚠️ Gotcha: `useDebugValue` is a no-op in production builds — React strips it. Never use it to drive logic, surface errors to users, or as a substitute for proper logging. Overusing it on simple hooks adds noise to the DevTools panel without benefit.
+
+---
+
 ## Concurrent Mode Hooks — useDeferredValue, useTransition, useSyncExternalStore, useId
 
 ### What problem does useTransition solve?
@@ -637,6 +682,7 @@ it('debounces value', async () => {
 - **Can `useMemo` return a different value without dependencies changing?** — Yes, React may discard memoized values as an optimization. Never rely on memo for semantic guarantees.
 - **Difference between `null` and `undefined` as a dependency?** — `Object.is(null, undefined)` is `false` — React treats them as different values and will re-run the effect on the transition.
 - **What does `useOptimistic` do on error?** — Reverts to the actual state passed to it. The optimistic value is a UI overlay, not committed state.
+- **What does `useDebugValue` do?** — Labels a custom hook in React DevTools; it is a no-op in production and must only be called inside custom hooks.
 
 ---
 

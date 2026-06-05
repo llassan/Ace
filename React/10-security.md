@@ -744,7 +744,7 @@ I'd also ask: why are we rolling our own token storage at all? If we're using Ne
 
 ---
 
-## Rapid-Fire
+## ⚡ Rapid-Fire
 
 **Q: What does `rel="noopener noreferrer"` prevent?**
 `noopener` prevents the new tab from accessing `window.opener` (phishing via tab hijack). `noreferrer` suppresses the Referrer header and implies `noopener`.
@@ -778,7 +778,7 @@ Public API: `Access-Control-Allow-Origin: *` without credentials is fine. Privat
 
 ---
 
-## Red Flags
+## 🚩 Red Flags
 
 - "We validate input on the front end, so we're fine" — client validation is UX; server validation is security.
 - "I use `dangerouslySetInnerHTML` but only with our own content" — whose content gets into that field? Over what transport? Validated how?
